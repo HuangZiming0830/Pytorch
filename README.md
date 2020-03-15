@@ -1,0 +1,2 @@
+# Pytorch
+Fundemental technics
