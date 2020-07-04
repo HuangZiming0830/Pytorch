@@ -1,0 +1,22 @@
+import numpy as np
+from collections import Counter
+train_label = np.load('labels123.npy')
+train_data = np.load('segments123.npy')
+test_label = np.load('test_labels123.npy')
+test_data = np.load('test_segments123.npy')
+train_label.shape , train_data.shape , test_label.shape,test_data.shape
+# RF
+from sklearn.ensemble import RandomForestClassifier
+model2 = RandomForestClassifier(n_estimators=10, max_depth=None,min_samples_split=2, random_state=0)
+model2.fit(train_data, train_label.ravel())
+model2.score(test_data ,test_label.ravel())
+#AdBoost
+from sklearn.ensemble import AdaBoostClassifier
+model3 = AdaBoostClassifier(n_estimators = 100,learning_rate = 0.5)
+model3.fit(train_data, train_label.ravel())
+model3.score(test_data ,test_label.ravel())
+#KNN
+from sklearn.neighbors import KNeighborsClassifier
+knn = KNeighborsClassifier(n_neighbors=17)
+knn.fit(train_data, train_label.ravel())
+knn.score(test_data ,test_label.ravel())
